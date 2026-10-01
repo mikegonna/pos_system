@@ -125,6 +125,7 @@ $isSetup = (int) $pdo->query('SELECT COUNT(*) FROM users')->fetchColumn() === 0;
 					<a class="button dashboard-link" href="sales.php">เปิดหน้าขาย</a>
 				<?php if ($user['role'] === 'admin'): ?>
 					<a class="button button-secondary dashboard-link" href="products.php">จัดการสินค้า</a>
+					<a class="button button-secondary dashboard-link" href="users.php">จัดการผู้ใช้งาน</a>
 					<a class="button button-secondary dashboard-link" href="reports.php">รายงาน</a>
 				<?php endif; ?>
 				</nav>
