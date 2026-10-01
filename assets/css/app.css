@@ -3,8 +3,21 @@
 :root {
     color-scheme: light;
     font-family: 'Noto Sans Thai', 'Tahoma', sans-serif;
-    color: #1e2c27;
-    background: #f3f5f1;
+    color: #2e2018;
+    background: #f9f1ea;
+    --restaurant-bg: #f9f1ea;
+    --restaurant-panel: #fffaf6;
+    --restaurant-panel-alt: #fff5ee;
+    --restaurant-primary: #c8572c;
+    --restaurant-primary-deep: #9e3e1d;
+    --restaurant-accent: #f1bf60;
+    --restaurant-soft: #f6e6d8;
+    --restaurant-text: #2f241d;
+    --restaurant-muted: #7a655b;
+    --restaurant-border: #efd9ca;
+    --restaurant-success: #335c45;
+    --restaurant-success-bg: #ecf6ef;
+    --restaurant-error-bg: #fff0ee;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
 }
@@ -17,9 +30,9 @@ body {
     min-width: 320px;
     min-height: 100vh;
     margin: 0;
-    background-color: #f3f5f1;
-    background-image: linear-gradient(rgba(29, 67, 52, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(29, 67, 52, 0.035) 1px, transparent 1px);
-    background-size: 32px 32px;
+    background-color: var(--restaurant-bg);
+    background-image: radial-gradient(circle at top left, rgba(200, 87, 44, 0.11), transparent 22%), radial-gradient(circle at bottom right, rgba(241, 191, 96, 0.18), transparent 18%), linear-gradient(rgba(101, 63, 46, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(101, 63, 46, 0.03) 1px, transparent 1px);
+    background-size: auto, auto, 28px 28px, 28px 28px;
 }
 
 .shell {
@@ -234,7 +247,9 @@ h1 {
 }
 
 .admin-page {
-    background-color: #f3f5f1;
+    background-color: var(--restaurant-bg);
+    background-image: radial-gradient(circle at top left, rgba(200, 87, 44, 0.08), transparent 22%), linear-gradient(rgba(101, 63, 46, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(101, 63, 46, 0.02) 1px, transparent 1px);
+    background-size: auto, 28px 28px, 28px 28px;
 }
 
 .admin-shell {
