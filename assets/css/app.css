@@ -3,8 +3,21 @@
 :root {
     color-scheme: light;
     font-family: 'Noto Sans Thai', 'Tahoma', sans-serif;
-    color: #1e2c27;
-    background: #f3f5f1;
+    color: #2e2018;
+    background: #f7f0ea;
+    --restaurant-bg: #f9f1ea;
+    --restaurant-panel: #fffaf6;
+    --restaurant-panel-alt: #fff5ee;
+    --restaurant-primary: #c8572c;
+    --restaurant-primary-deep: #9e3e1d;
+    --restaurant-accent: #f1bf60;
+    --restaurant-soft: #f6e6d8;
+    --restaurant-text: #2f241d;
+    --restaurant-muted: #7a655b;
+    --restaurant-border: #efd9ca;
+    --restaurant-success: #335c45;
+    --restaurant-success-bg: #ecf6ef;
+    --restaurant-error-bg: #fff0ee;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
 }
@@ -17,9 +30,9 @@ body {
     min-width: 320px;
     min-height: 100vh;
     margin: 0;
-    background-color: #f3f5f1;
-    background-image: linear-gradient(rgba(29, 67, 52, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(29, 67, 52, 0.035) 1px, transparent 1px);
-    background-size: 32px 32px;
+    background-color: var(--restaurant-bg);
+    background-image: radial-gradient(circle at top left, rgba(200, 87, 44, 0.11), transparent 22%), radial-gradient(circle at bottom right, rgba(241, 191, 96, 0.18), transparent 18%), linear-gradient(rgba(101, 63, 46, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(101, 63, 46, 0.03) 1px, transparent 1px);
+    background-size: auto, auto, 28px 28px, 28px 28px;
 }
 
 .shell {
@@ -35,28 +48,29 @@ body {
 .panel {
     width: 100%;
     padding: 42px;
-    border: 1px solid #dce3dc;
-    border-radius: 8px;
-    background: #fff;
-    box-shadow: 0 18px 48px rgba(29, 54, 43, 0.08);
+    border: 1px solid var(--restaurant-border);
+    border-radius: 18px;
+    background: var(--restaurant-panel);
+    box-shadow: 0 24px 60px rgba(92, 56, 36, 0.12);
     animation: arrive 420ms ease-out both;
 }
 
 .brand-mark {
     display: grid;
-    width: 42px;
+    width: 48px;
     aspect-ratio: 1;
     place-items: center;
-    border-radius: 7px;
-    background: #1d674b;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--restaurant-primary) 0%, var(--restaurant-primary-deep) 100%);
     color: #fff;
     font-size: 22px;
     font-weight: 700;
+    box-shadow: 0 10px 24px rgba(200, 87, 44, 0.28);
 }
 
 .eyebrow,
 .side-index {
-    color: #658174;
+    color: var(--restaurant-primary);
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.12em;
@@ -94,16 +108,16 @@ h1 {
     width: 100%;
     height: 46px;
     padding: 0 12px;
-    border: 1px solid #cbd6ce;
-    border-radius: 5px;
+    border: 1px solid var(--restaurant-border);
+    border-radius: 10px;
     background: #fff;
-    color: #1e2c27;
+    color: var(--restaurant-text);
     font: inherit;
 }
 
 .login-form input:focus {
-    border-color: #1d674b;
-    outline: 3px solid rgba(29, 103, 75, 0.14);
+    border-color: var(--restaurant-primary);
+    outline: 3px solid rgba(200, 87, 44, 0.12);
 }
 
 .button {
@@ -111,26 +125,27 @@ h1 {
     margin-top: 12px;
     padding: 10px 16px;
     border: 0;
-    border-radius: 5px;
-    background: #1d674b;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--restaurant-primary) 0%, var(--restaurant-primary-deep) 100%);
     color: #fff;
     cursor: pointer;
     font: inherit;
-    font-weight: 600;
+    font-weight: 700;
+    box-shadow: 0 12px 20px rgba(200, 87, 44, 0.18);
 }
 
 .button:hover {
-    background: #15543b;
+    background: linear-gradient(135deg, var(--restaurant-primary-deep) 0%, #7f3014 100%);
 }
 
 .button-secondary {
-    border: 1px solid #cbd6ce;
+    border: 1px solid var(--restaurant-border);
     background: #fff;
-    color: #1e2c27;
+    color: var(--restaurant-text);
 }
 
 .button-secondary:hover {
-    background: #f3f5f1;
+    background: var(--restaurant-panel-alt);
 }
 
 .action-form {
@@ -146,12 +161,12 @@ h1 {
 }
 
 .notice {
-    background: #eaf4ee;
-    color: #1d674b;
+    background: var(--restaurant-success-bg);
+    color: var(--restaurant-success);
 }
 
 .error {
-    background: #fff0ed;
+    background: var(--restaurant-error-bg);
     color: #a33d2e;
 }
 
@@ -159,9 +174,9 @@ h1 {
     display: inline-block;
     margin-left: 5px;
     padding: 2px 8px;
-    border-radius: 4px;
-    background: #eaf4ee;
-    color: #1d674b;
+    border-radius: 6px;
+    background: var(--restaurant-soft);
+    color: var(--restaurant-primary-deep);
     font-size: 12px;
 }
 
@@ -171,22 +186,23 @@ h1 {
     flex-direction: column;
     justify-content: flex-end;
     padding: 28px 0;
-    border-bottom: 1px solid #9caf9f;
+    border-bottom: 1px solid rgba(158, 62, 29, 0.28);
     animation: arrive 520ms 80ms ease-out both;
 }
 
 .side-note p {
     margin: 16px 0 24px;
-    color: #1d674b;
+    color: var(--restaurant-primary-deep);
     font-size: 30px;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.55;
 }
 
 .side-rule {
     width: 54px;
     height: 4px;
-    background: #e47c58;
+    background: linear-gradient(90deg, var(--restaurant-accent), var(--restaurant-primary));
+    border-radius: 99px;
 }
 
 @keyframes arrive {
@@ -234,7 +250,7 @@ h1 {
 }
 
 .admin-page {
-    background-color: #f3f5f1;
+    background-color: var(--restaurant-bg);
 }
 
 .admin-shell {
@@ -255,34 +271,35 @@ h1 {
 
 .admin-header {
     min-height: 58px;
-    border-bottom: 1px solid #dce3dc;
+    border-bottom: 1px solid var(--restaurant-border);
 }
 
 .admin-brand {
     justify-content: flex-start;
     gap: 12px;
-    color: #1e2c27;
+    color: var(--restaurant-text);
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
     text-decoration: none;
 }
 
 .admin-brand .brand-mark {
     width: 34px;
     font-size: 18px;
+    border-radius: 10px;
 }
 
 .admin-user {
     gap: 18px;
-    color: #596961;
+    color: var(--restaurant-muted);
     font-size: 13px;
 }
 
 .admin-user a,
 .table-link,
 .cancel-link {
-    color: #1d674b;
-    font-weight: 600;
+    color: var(--restaurant-primary-deep);
+    font-weight: 700;
     text-decoration: none;
 }
 
@@ -300,7 +317,7 @@ h1 {
 
 .count-label,
 .status {
-    color: #64746b;
+    color: var(--restaurant-muted);
     font-size: 12px;
 }
 
@@ -315,9 +332,10 @@ h1 {
 .inventory-section {
     min-width: 0;
     padding: 22px;
-    border: 1px solid #dce3dc;
-    border-radius: 7px;
-    background: #fff;
+    border: 1px solid var(--restaurant-border);
+    border-radius: 14px;
+    background: var(--restaurant-panel);
+    box-shadow: 0 14px 28px rgba(104, 72, 55, 0.05);
 }
 
 .management-section h2,
@@ -345,10 +363,10 @@ h1 {
     min-width: 0;
     height: 40px;
     padding: 0 10px;
-    border: 1px solid #cbd6ce;
-    border-radius: 5px;
+    border: 1px solid var(--restaurant-border);
+    border-radius: 10px;
     background: #fff;
-    color: #1e2c27;
+    color: var(--restaurant-text);
     font: inherit;
     font-size: 13px;
 }
@@ -356,8 +374,8 @@ h1 {
 .data-form input:focus,
 .data-form select:focus,
 .search-form input:focus {
-    border-color: #1d674b;
-    outline: 3px solid rgba(29, 103, 75, 0.12);
+    border-color: var(--restaurant-primary);
+    outline: 3px solid rgba(200, 87, 44, 0.12);
 }
 
 .field-pair {
@@ -424,14 +442,15 @@ h1 {
 .status {
     display: inline-block;
     padding: 3px 7px;
-    border-radius: 4px;
-    background: #f0f2f0;
+    border-radius: 6px;
+    background: #f6efe9;
+    color: var(--restaurant-muted);
     white-space: nowrap;
 }
 
 .status.is-active {
-    background: #eaf4ee;
-    color: #1d674b;
+    background: var(--restaurant-success-bg);
+    color: var(--restaurant-success);
 }
 
 .inventory-section {

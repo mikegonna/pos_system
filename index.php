@@ -114,8 +114,8 @@ $isSetup = (int) $pdo->query('SELECT COUNT(*) FROM users')->fetchColumn() === 0;
 <body>
 	<main class="shell">
 		<section class="panel" aria-labelledby="page-title">
-			<div class="brand-mark" aria-hidden="true">P</div>
-			<p class="eyebrow">POINT OF SALE</p>
+			<div class="brand-mark" aria-hidden="true">R</div>
+			<p class="eyebrow">RESTAURANT POS</p>
 
 			<?php if ($user): ?>
 				<h1 id="page-title">ยินดีต้อนรับ</h1>
@@ -170,8 +170,8 @@ $isSetup = (int) $pdo->query('SELECT COUNT(*) FROM users')->fetchColumn() === 0;
 			<?php endif; ?>
 		</section>
 		<aside class="side-note" aria-hidden="true">
-			<span class="side-index">POS / 01</span>
-			<p>ขายง่าย<br>จัดการชัดเจน</p>
+			<span class="side-index">KITCHEN / 01</span>
+			<p>สั่งง่าย<br>เสิร์ฟเร็ว</p>
 			<span class="side-rule"></span>
 		</aside>
 	</main>
