@@ -5,6 +5,7 @@
     font-family: 'Noto Sans Thai', 'Tahoma', sans-serif;
     color: #2e2018;
     background: #f7f0ea;
+    background: #f9f1ea;
     --restaurant-bg: #f9f1ea;
     --restaurant-panel: #fffaf6;
     --restaurant-panel-alt: #fff5ee;
@@ -251,6 +252,8 @@ h1 {
 
 .admin-page {
     background-color: var(--restaurant-bg);
+    background-image: radial-gradient(circle at top left, rgba(200, 87, 44, 0.08), transparent 22%), linear-gradient(rgba(101, 63, 46, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(101, 63, 46, 0.02) 1px, transparent 1px);
+    background-size: auto, 28px 28px, 28px 28px;
 }
 
 .admin-shell {
@@ -860,22 +863,92 @@ td small {
     min-width: 0;
     gap: 5px;
     padding: 16px;
-    border: 1px solid #dce3dc;
-    border-radius: 6px;
-    background: #fff;
+    border: 1px solid var(--restaurant-border);
+    border-radius: 14px;
+    background: var(--restaurant-panel);
 }
 
 .report-metrics span,
 .report-metrics small {
-    color: #748078;
+    color: var(--restaurant-muted);
     font-size: 11px;
 }
 
 .report-metrics strong {
     overflow-wrap: anywhere;
-    color: #1d674b;
+    color: var(--restaurant-primary-deep);
     font-size: 23px;
     font-variant-numeric: tabular-nums;
+}
+
+.chart-panel {
+    margin-bottom: 22px;
+    padding: 18px 18px 12px;
+    border: 1px solid var(--restaurant-border);
+    border-radius: 14px;
+    background: var(--restaurant-panel);
+    box-shadow: 0 12px 24px rgba(104, 72, 55, 0.04);
+}
+
+.chart-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.chart-heading h2 {
+    margin: 0;
+    font-size: 17px;
+}
+
+.chart-heading span {
+    color: var(--restaurant-muted);
+    font-size: 12px;
+}
+
+.chart-wrap {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    align-items: end;
+    gap: 12px;
+    min-height: 220px;
+    padding-top: 12px;
+}
+
+.chart-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    gap: 8px;
+    min-height: 180px;
+}
+
+.chart-bar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    min-height: 22px;
+    padding-top: 8px;
+    border-radius: 12px 12px 8px 8px;
+    background: linear-gradient(180deg, #f7c87b 0%, var(--restaurant-primary) 100%);
+    box-shadow: inset 0 -8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.chart-bar span {
+    display: inline-block;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.chart-column small {
+    color: var(--restaurant-muted);
+    font-size: 11px;
 }
 
 .report-grid {
@@ -941,6 +1014,10 @@ td small {
 
     .report-metrics {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .chart-wrap {
+        gap: 8px;
     }
 }
 

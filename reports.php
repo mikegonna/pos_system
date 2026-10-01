@@ -51,6 +51,30 @@ $lowStockStatement = $pdo->query(
     'SELECT id, name, stock, min_stock, unit FROM products WHERE status = 1 AND stock <= min_stock ORDER BY stock ASC, name LIMIT 20'
 );
 $lowStockProducts = $lowStockStatement->fetchAll();
+
+$trendStartDate = $parsedDate->modify('-6 days');
+$trendStartDateTime = $trendStartDate->format('Y-m-d') . ' 00:00:00';
+$trendEndDateTime = $parsedDate->modify('+1 day')->format('Y-m-d') . ' 00:00:00';
+$trendStatement = $pdo->prepare(
+    'SELECT DATE(created_at) AS sale_date, SUM(total) AS total FROM sales WHERE status = "completed" AND created_at >= :start_at AND created_at < :end_at GROUP BY DATE(created_at)'
+);
+$trendStatement->execute(['start_at' => $trendStartDateTime, 'end_at' => $trendEndDateTime]);
+$trendRows = $trendStatement->fetchAll();
+$trendMap = [];
+foreach ($trendRows as $row) {
+    $trendMap[(string) $row['sale_date']] = (float) $row['total'];
+}
+$trendData = [];
+for ($dayOffset = 6; $dayOffset >= 0; --$dayOffset) {
+    $pointDate = $parsedDate->modify('-' . $dayOffset . ' days');
+    $dateKey = $pointDate->format('Y-m-d');
+    $trendData[] = [
+        'label' => $pointDate->format('d'),
+        'short_label' => $pointDate->format('d/M'),
+        'value' => $trendMap[$dateKey] ?? 0.0,
+    ];
+}
+$maxTrendValue = max(1.0, ...array_map(static fn (array $point): float => (float) $point['value'], $trendData));
 ?>
 <!doctype html>
 <html lang="th">
@@ -77,6 +101,24 @@ $lowStockProducts = $lowStockStatement->fetchAll();
             <article><span>จำนวนบิล</span><strong><?= number_format((int) $summary['sale_count']) ?></strong><small>บิล</small></article>
             <article><span>ส่วนลด</span><strong><?= number_format((float) $summary['total_discount'], 2) ?></strong><small>บาท</small></article>
             <article><span>สินค้าใกล้หมด</span><strong><?= number_format(count($lowStockProducts)) ?></strong><small>รายการที่แสดง</small></article>
+        </section>
+
+        <section class="chart-panel" aria-label="กราฟยอดขาย 7 วัน">
+            <div class="chart-heading">
+                <h2>แนวโน้มยอดขาย 7 วัน</h2>
+                <span><?= $escape($trendStartDate->format('d/m')) ?> - <?= $escape($parsedDate->format('d/m')) ?></span>
+            </div>
+            <div class="chart-wrap">
+                <?php foreach ($trendData as $point): ?>
+                    <?php $barHeight = $maxTrendValue > 0 ? max(8, (float) $point['value'] / $maxTrendValue * 100) : 0; ?>
+                    <div class="chart-column">
+                        <div class="chart-bar" style="height: <?= $barHeight ?>%;">
+                            <span><?= number_format((float) $point['value'], 0) ?></span>
+                        </div>
+                        <small><?= $escape((string) $point['short_label']) ?></small>
+                    </div>
+                <?php endforeach; ?>
+            </div>
         </section>
 
         <div class="report-grid">
